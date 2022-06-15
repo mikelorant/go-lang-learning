@@ -7,21 +7,21 @@ import (
 )
 
 type Option interface{
-	apply(*option.Options)
+	Apply(*option.Options)
 }
 
 type WithAPIKey string
-func (k WithAPIKey) apply(o *option.Options) {
+func (k WithAPIKey) Apply(o *option.Options) {
 	o.APIKey = string(k)
 }
 
 type WithAPISecret string
-func (s WithAPISecret) apply(o *option.Options) {
+func (s WithAPISecret) Apply(o *option.Options) {
 	o.APISecret = string(s)
 }
 
 type WithBaseURL string
-func (u WithBaseURL) apply(o *option.Options) {
+func (u WithBaseURL) Apply(o *option.Options) {
 	o.BaseURL = string(u)
 }
 
@@ -36,7 +36,7 @@ func New(opts ...Option) {
 	o := &option.Options{}
 
 	for _, opt := range opts {
-		opt.apply(o)
+		opt.Apply(o)
 	}
 
 	fmt.Printf("%+v\n", o)
